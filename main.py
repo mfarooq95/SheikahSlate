@@ -52,28 +52,52 @@ async def ping(ctx):
 @client.command(aliases = ['Sheikahslate', 'info', 'botw', 'botwinfo'])
 async def sheikahslate(ctx, *, user_request):
     api_input = user_request.replace(' ', '_') # Take and stores user_input, replacing spaces with underscores to match API's format
-    result_json_str_from_api = compendium().get_entry(api_input) # Takes and matches formatted user input with compendium data, gets data and stores it
+    try:
+        result_json_str_from_api = compendium().get_entry(api_input) # Takes and matches formatted user input with compendium data, gets data and stores it
+    except Exception as ex:
+        await ctx.send(f'"{user_request}" not found in Compendium. Please check spelling and try again.')
+        return
+
     json_from_api = json.loads(json.dumps(result_json_str_from_api)) # Encodes matched and retrieved data into json via dumps, then loads it and stores it
 
     # Create embed object, adding content from API gotten from above
 
-    embed = discord.Embed(title = json_from_api['name'].title(), url = 'https://zelda.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild', color = 0x60f8fd)
+    embed = discord.Embed(title = f"**{json_from_api['name'].title()}**", url = 'https://zelda.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild', color = 0x60f8fd)
     embed.set_thumbnail(url = json_from_api['image']) # Taking embed object and with method adding a thumbnail - image url parsed and taken from API's json data
     properties_to_not_include = ['id', 'name', 'image', 'description']
     for prop in json_from_api:
         if prop not in properties_to_not_include:
-            if prop == 'drops' or prop == 'common_locations':
-                embed.add_field(name = prop.replace('_', " ").title(), value = json_from_api[prop] if json_from_api[prop] != [] else "\n".join(json_from_api[prop]), inline = True)
-            elif prop == 'hearts_recovered' or prop == 'cooking_effect' and json_from_api[prop] != '' or None:
-                embed.add_field(name = prop.replace('_', " ").title(), value = json_from_api[prop], inline = True)
-            elif prop == 'attack' or prop == 'defense':
-                embed.add_field(name = prop.capitalize(), value = json_from_api[prop], inline = True)
-            else:
-                value = 'N/A' if json_from_api[prop] == '' else json_from_api[prop]
-                embed.add_field(name = prop.replace('_', ' ').title(), value = value, inline = True)
+            formatted_value = await validate_prop_and_get_formatted_value(json_from_api[prop])
+            if formatted_value is None:
+                print(f"Unexpected type. Type = {type(json_from_api[prop])}")
+                await ctx.send("Unexpected error! Please try again.")
+                return
+            embed.add_field(name = prop.replace('_', ' ').title(), value = formatted_value.title(), inline = True)
+
     embed.add_field(name = "Description", value = json_from_api['description'], inline = False) # Adds description field to embed object - value data parsed and taken from API's json data
     await ctx.send(embed = embed) # Awaits and sends embed back to channel where user called command 
 
+async def validate_prop_and_get_formatted_value(json_prop_value):
+    type_returned_from_prop = type(json_prop_value)
+    
+    if type_returned_from_prop == type(None):
+        formatted_value = "N/A"
+    elif type_returned_from_prop in [int, float, complex]:
+        formatted_value = str(json_prop_value)
+    elif type_returned_from_prop == list:
+        if len(json_prop_value) == 0:
+            formatted_value = "N/A"
+        else:
+            formatted_value = "\n".join(json_prop_value)
+    elif type_returned_from_prop == str:
+        if json_prop_value == '':
+            formatted_value = 'N/A'
+        else:
+            formatted_value = json_prop_value
+    else:
+        formatted_value = None
+
+    return formatted_value
 # Run the bot using its token from config.py for security
 
 client.run(config.token)
