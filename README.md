@@ -2,7 +2,11 @@
   <img src=https://user-images.githubusercontent.com/43150822/136715288-27db69cd-586e-47f1-80f0-aabe27192a62.png />
 </p>
 
-# About Sheikah Slate
+# 
+
+<p align="center">
+  <img src=https://user-images.githubusercontent.com/43150822/138379729-0131821e-40f7-4018-be70-8b2499ecd980.png />
+</p>
 
 <p align="center">
   <b>Distilling Informaition</b><br>
@@ -14,11 +18,15 @@
 
 *Hyrule-Compendium* and *Pyrule-Compendium* were created and shared by [gadhagod](https://github.com/gadhagod)
 
-# Intentions
+<p align="center">
+  <img src=https://user-images.githubusercontent.com/43150822/138379736-1984a591-8238-4c0d-b9f2-d81db3df61a9.png />
+</p>
 
 **Sheikah Slate** was created and is intended to be a community-used Discord bot for fans of the game to gain quick access to knowledge of Breath of the Wild's compendium, available in-game to players, all with a quick ping within community Discord servers
 
-# Bot Progress & Status
+<p align="center">
+  <img src=https://user-images.githubusercontent.com/43150822/138379731-aac888bc-317b-4594-b99d-3e26578cddac.png />
+</p>
 
 - [x] Connect to Hyrule-Compendium API data when users ping bot
 - [x] Create repo on Github
