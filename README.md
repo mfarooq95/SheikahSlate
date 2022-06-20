@@ -28,6 +28,7 @@
   <img src=https://user-images.githubusercontent.com/43150822/138379731-aac888bc-317b-4594-b99d-3e26578cddac.png />
 </p>
 
+In the future, the bot will no longer use the current API but will instead use an upcoming, more detailed API—Pyrule Champion. Progress below will reflect the change in API
 - [x] Connect to Hyrule-Compendium API data when users ping bot
 - [x] Create repo on Github
 - [x] Fully enrich returned content with basic, avilable Hyrule-Compendium data
