@@ -30,7 +30,7 @@
 
 - [x] Connect to Hyrule-Compendium API data when users ping bot
 - [x] Create repo on Github
-- [ ] Fully enrich returned content with basic, avilable Hyrule-Compendium data
+- [x] Fully enrich returned content with basic, avilable Hyrule-Compendium data
 - [ ] Make the Discord bot live and available for server invites and use
 - [ ] Link users to Zelda wiki page for each returned item
 - [ ] Enhance bot/compendium's encyclopedia with all Breath of the Wild data relevant to players/users
