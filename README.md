@@ -14,6 +14,10 @@
   <br><br>
 </p>
 
+# This bot's development has been halted. While it is complete and functional, the source API for the bot's data left much to be desired.
+# I have since taken it upon myself to create a more detailed and extensive API with data from <i>The Legend of Zelda: Tears of the Kingdom</i>, the sequel, and will rebuild the bot to use this API. The API will also be available for use in other projects.
+<br><br>
+
 **Sheikah Slate** is a community Discord bot built with Python utilizing *Hyrule-Compendium*—a The Legend of Zelda: Breath of the Wild API—as well as its Python API wrapper *Pyrule-Compendium*, and the *Discord.py* library
 
 *Hyrule-Compendium* and *Pyrule-Compendium* were created and shared by [gadhagod](https://github.com/gadhagod)
